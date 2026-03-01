@@ -36,12 +36,12 @@ make_art <- function(seed, name, version) {
   pull_2 <- runif(1, min = 0, max = .2) * .1
   x_mid <- runif(1, min = -2, max = 2)
   y_mid <- runif(1, min = -2, max = 2)
-  width_scale <- runif(1, min = .5, max = 1) * 2
-  length_scale <- runif(1, min = .5, max = 1) * .05
+  width_scale <- runif(1, min = .5, max = 1) * 18
+  length_scale <- runif(1, min = .5, max = 1) * .0075
   cauchy_scale_th <- .05
-  cauchy_scale_xy <- .01
-  curl_scale <- .5
-  curl_scale2 <- .4
+  cauchy_scale_xy <- .03
+  curl_scale <- .7
+  curl_scale2 <- .65
   a <- runif(1, min = 0, max = 10)
   k <- runif(1, min = .5, max = 1)
   sgn <- sample(c(-1, 1), 1)
@@ -54,9 +54,9 @@ make_art <- function(seed, name, version) {
       fractal = ambient::fbm,
       x = x,
       y = y,
-      frequency = .3,
+      frequency = .15,
       seed = seed,
-      octaves = 5
+      octaves = 2
     )
   }
 
