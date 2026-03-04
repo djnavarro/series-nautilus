@@ -2,8 +2,8 @@
 # set up ------------------------------------------------------------------
 
 name <- "nautilus"
-version <- 11
-seeds <- 1200:1299
+version <- 19
+seeds <- 1900:1999
 
 # define common helper functions & core tools
 source(here::here("source", "common.R"), echo = FALSE)
@@ -32,8 +32,8 @@ make_art <- function(seed, name, version) {
   palette <- sample(palette)
   
   # parameters that affect all bezier objects
-  pull_1 <- runif(1, min = -.1, max = .1) * .25
-  pull_2 <- runif(1, min = 0, max = .2) * .25
+  pull_1 <- runif(1, min = -.1, max = .1) * .1
+  pull_2 <- runif(1, min = 0, max = .2) * .1
   x_mid <- runif(1, min = -2, max = 2)
   y_mid <- runif(1, min = -2, max = 2)
   width_scale <- runif(1, min = .5, max = 1) * .2
@@ -57,7 +57,8 @@ make_art <- function(seed, name, version) {
   n_ribbons <- 4000
   
   base <- tibble::tibble(
-    r = rbeta(n_ribbons, 10, 1) * 1.5,
+    r0 = rbeta(n_ribbons, 4, 1) * 1.5,
+    r = dplyr::if_else(runif(n_ribbons) < .05, 1-r0, r0),
     a = rcauchy(n_ribbons, scale = cauchy_scale) * pi + runif(1, min = 0, max = 2*pi),
     x = r * cos(a),
     y = r * sin(a),
